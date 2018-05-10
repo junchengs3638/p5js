@@ -1,0 +1,67 @@
+<head>
+  <title>p5js Template</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+  <script>
+    var centerX
+    var centerY
+    var x
+    var y
+    var score
+
+    function setup() {
+      createCanvas(500, 500);
+      centerX = 250
+      centerY = 250
+      score = 0
+    }
+
+    function draw() {
+      //backgroud color?
+      background(200)
+
+      centerX = mouseX
+      centerY = mouseY
+      //scope looking thing making it mouse with the mouse
+      noFill()
+      ellipseMode(CENTER)
+      ellipse(centerX, centerY, 250, 250)
+      line(centerX, centerY - 125, centerX, centerY + 125)
+      line(centerX - 125, centerY, centerX + 125, centerY)
+
+      //making circle spawn
+      fill(random(87), random(20), random(10))
+      ellipse(x, y, 100, 100)
+
+      //making a score
+      textSize(32)
+      text("score: " + score, 0, 25)
+    }
+
+    function mousePressed() {
+      //making each time i click the circle the score go up by one
+      if (mouseX < x + 50 && mouseX > x - 50 && mouseY > y - 50 && mouseY < y + 50) {
+        score += 1
+      }
+      // make circle spawn randomly like any where on the canvas
+      x = random(400)
+      y = random(400)
+    }
+  </script>
+</head>
+
+<body>
+  <div id="code" class="container-fluid">
+    <script src="https://gist-it.appspot.com/github/junchengs3638/p5js/blob/master/conditionals-project.html?footer=0"></script>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script>
+    $(window).bind("load", function() {
+      $('#code').before($('#defaultCanvas0').remove());
+    });
+  </script>
+</body>
+
+
+</html>
