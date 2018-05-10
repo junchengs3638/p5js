@@ -18,24 +18,35 @@
         
       }
       function mouseMoved(){
+        //circle following the mouse
         ellipse(mouseX,mouseY,size,size)
+        //the color of the circle
         fill(random(255),random(255),random(255),100)
+        //increase the size of the circle
         size++
+        //lines from the end also following the mouse
         line(mouseX,mouseY,0,0)
+        
         stroke(random(255),random(255),random(255))
+        //lines from the end also following the mouse
         line(mouseX,mouseY,600,600)
         stroke(random(255),random(255),random(255))
+        //lines from the end also following the mouse
         line(mouseX,mouseY,0,600)
         stroke(random(255),random(255),random(255))
+        //lines from the end also following the mouse
         line(mouseX,mouseY,600,0)       
         stroke(random(255),random(255),random(255))
+        //rectangle follow the mouse
         rect(mouseX,mouseY,40,50,50,40)
       }
       function keyPressed(){
+        //background color change
         background(random(255),random(255),random(255),100)
         
       }
       function mousePressed(){
+        //each time the mouse is pressed a rectangle appear
         rect(255,300,100,400)
       }
 
