@@ -1,0 +1,111 @@
+                                                  
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+  <head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+      var ballX;
+      var ballY;
+      var ballSpeedX = 5;
+      var ballSpeedY = 5;
+      var paddleHeight = 30;//how tall the paddle is
+      var score = 0
+      var lives = 3
+    
+
+      function setup() {
+        createCanvas(800, 600);
+        noCursor();//hides the mouse
+        ballX = random(width);//where the ball would appear from the top
+        ballY = random(height / 2);//how high would the ball appear
+        
+      }
+      function draw() {
+        background(0)//so we don’t see the rest of the balls
+        moveBall();//move the ellipse around
+        checkCollide();//makes the ball bounce off the walls
+        drawPaddle();//make rectangle appear
+        drawBall();//make ellipse appear
+        textSize(42)
+        fill(255)
+        text("Score="+ score,60,100)
+        textSize(42)
+        fill(255)
+        text("lives= " + lives,500,100)
+      }
+
+      function moveBall() {
+        ballX = ballX + ballSpeedX; //the speed at which the ellipse move at
+        ballY = ballY + ballSpeedY;
+
+        console.log("ballSpeedX: " + ballSpeedX + 
+                    ", ballSpeedY: " + ballSpeedY);
+        
+      }
+
+      function checkCollide() {
+        if (ballX < 0 || ballX > width) {
+          ballSpeedX = ballSpeedX * -1;//if the ball hit the sides of the wall it would bounce back
+        }
+        if (ballY < 0) {
+          ballSpeedY = ballSpeedY * -1;//it the ball hit the top of the wall it would bounce back
+        }
+        if (ballY > height - paddleHeight-20) {
+          ballSpeedY+= 1
+          if (ballX > mouseX-100 && ballX < mouseX-100 + 200) {
+            ballSpeedY = ballSpeedY * -1;
+            (score = score + 1)
+          }
+          else {
+            (lives = lives - 1)
+            if (lives > 0){
+              ballY = 100
+            }else{textSize(100)
+                  fill(25,25,255)
+                  text("GAME OVER!", width / 10, height / 2);//The text Game Over appear when the ball didn’t hit the paddle
+                  noLoop();}
+            
+       
+
+          
+          }
+        }
+        
+      }
+
+      function drawBall() {
+        noStroke();
+        stroke(255,0,255)
+        strokeWeight(2)
+     
+        fill(0)
+        ellipse(ballX, ballY, 20, 20);//how the ellipse is going to look like
+        
+      }
+
+      function drawPaddle() {
+        stroke(64,224,208)
+        strokeWeight(2);
+        rectMode(CENTER)
+        fill(0)
+        rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);//how the paddle look like
+      }
+      
+    </script>
+  </head>
+
+  <body>
+    <form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+      <script src="https://gist-it.appspot.com/github/junchengs3638/p5js/blob/master/pong-remix.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+      $(window).bind("load", function() {
+        $('#code').before($('#defaultCanvas0').remove());
+      });
+    </script>
+  </body>
