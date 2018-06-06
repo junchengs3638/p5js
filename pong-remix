@@ -12,7 +12,7 @@
       var ballSpeedY = 5;
       var paddleHeight = 30;//how tall the paddle is
       var score = 0
-      var lives = 3
+      var lives = 3//how many lives you get
     
 
       function setup() {
@@ -56,14 +56,14 @@
           ballSpeedY+= 1
           if (ballX > mouseX-100 && ballX < mouseX-100 + 200) {
             ballSpeedY = ballSpeedY * -1;
-            (score = score + 1)
+            (score = score + 1)//when ball hits paddle the score increase
           }
           else {
-            (lives = lives - 1)
+            (lives = lives - 1)//if the ball didnt hit the paddle then lives will decrease you only have 3 lives
             if (lives > 0){
               ballY = 100
             }else{textSize(100)
-                  fill(25,25,255)
+                  fill(25,25,255)//color of the text
                   text("GAME OVER!", width / 10, height / 2);//The text Game Over appear when the ball didn’t hit the paddle
                   noLoop();}
             
@@ -86,9 +86,9 @@
       }
 
       function drawPaddle() {
-        stroke(64,224,208)
+        stroke(64,224,208)//color of the lines outsdie of the rectangle
         strokeWeight(2);
-        rectMode(CENTER)
+        rectMode(CENTER)//the rectangle is now followed by the mouse in the center
         fill(0)
         rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);//how the paddle look like
       }
